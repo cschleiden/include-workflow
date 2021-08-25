@@ -1,8 +1,8 @@
 # include-workflow
 
-This is an action that allows you to abuse [Composite Actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action) to include workflows steps 
+This is an action that allows you to abuse [Composite Actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action) to include workflows steps. Not recommended for production use, just me playing with composite actions.
 
-1. Add shared workflow steps, for example in your repository:
+1. Add shared workflow steps, for example in your repository (indentation is important):
    `.github/workflows/shared/snippet.yml`
    ```yaml
        - run: echo "This step is shared!"
@@ -26,7 +26,7 @@ This is an action that allows you to abuse [Composite Actions](https://docs.gith
    ```
    to **another** workflow.
 
-5. Update `.github/workflows/shared/snippet.yml` and re-run the workflows including it, they'll now run the updated steps from the shared snippe! 🎉🥳
+5. Update `.github/workflows/shared/snippet.yml` and re-run the workflows including it, they'll now run the updated steps from the shared snippet! 🎉🥳
 
 Example: https://github.com/cschleiden/include-workflow-test/actions/runs/1167755605 
 
