@@ -3,20 +3,18 @@ description: 'Include workflow snippets'
 inputs:
   workflow-steps:
     required: true
+    description: 'Workflow steps to run. This is what you would configure for the `steps` property in a normal `job`'
 runs:
   using: "composite"
-  steps: 
-    - run: echo "FOLDER=included-workflow-$(openssl rand -base64 12)" >> $GITHUB_ENV 
-      shell: bash     
+  steps:     
     - run: |
-        mkdir "$GITHUB_WORKSPACE/$FOLDER"
-        echo "name: 'Included workflow'" > "$GITHUB_WORKSPACE/$FOLDER/action.yml"
-        echo "runs:" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"
-        echo "  using: \"composite\"" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"
-        echo "  steps:" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"
+        mkdir "$GITHUB_WORKSPACE/included-workflow"
+        echo "name: 'Included workflow'" > "$GITHUB_WORKSPACE/included-workflow/action.yml"
+        echo "runs:" >> "$GITHUB_WORKSPACE/inlcuded-workflow/action.yml"
+        echo "  using: \"composite\"" >> "$GITHUB_WORKSPACE/included-workflow/action.yml"
+        echo "  steps:" >> "$GITHUB_WORKSPACE/included-workflow/action.yml"
       shell: bash    
-    - run: 'cat "${{ inputs.workflow-steps }}" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"'
+    - run: 'cat "${{ inputs.workflow-steps }}" >> "$GITHUB_WORKSPACE/included-workflow/action.yml"'
       shell: bash
     - name: Run included workflow
-      uses: ./${{ env.FOLDER }}
-      shell: bash
+      uses: ./included-workflow
