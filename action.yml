@@ -6,16 +6,17 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: pwd
-      shell: bash
+    - run: echo "FOLDER=included-workflow-$(openssl rand -base64 12)" >> $GITHUB_ENV 
+      shell: bash     
     - run: |
-        mkdir "$GITHUB_WORKSPACE/included"
-        echo "name: 'Included workflow'" > "$GITHUB_WORKSPACE/included/action.yml"
-        echo "runs:" >> "$GITHUB_WORKSPACE/included/action.yml"
-        echo "  using: \"composite\"" >> "$GITHUB_WORKSPACE/included/action.yml"
-        echo "  steps:" >> "$GITHUB_WORKSPACE/included/action.yml"
+        mkdir "$GITHUB_WORKSPACE/$FOLDER"
+        echo "name: 'Included workflow'" > "$GITHUB_WORKSPACE/$FOLDER/action.yml"
+        echo "runs:" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"
+        echo "  using: \"composite\"" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"
+        echo "  steps:" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"
+      shell: bash    
+    - run: 'cat "${{ inputs.workflow-steps }}" >> "$GITHUB_WORKSPACE/$FOLDER/action.yml"'
       shell: bash
-    - run: echo $GITHUB_WORKSPACE
-      shell: bash
-    - run: 'cat "${{ inputs.workflow-steps }}" >> "$GITHUB_WORKSPACE/included/action.yml"'
+    - name: Run included workflow
+      uses: ./${{ env.FOLDER }}
       shell: bash
