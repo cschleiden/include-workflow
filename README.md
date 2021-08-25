@@ -29,3 +29,9 @@ This is an action that allows you to abuse [Composite Actions](https://docs.gith
 5. Update `.github/workflows/shared/snippet.yml` and re-run the workflows including it, they'll now run the updated steps from the shared snippe! 🎉🥳
 
 Example: https://github.com/cschleiden/include-workflow-test/actions/runs/1167755605 
+
+### Drawbacks:
+
+- You will not see the steps show up as steps in the UI, example: 
+  ![image](https://user-images.githubusercontent.com/2201819/130850430-62a27b08-04f0-4d35-93cf-00000ed0e3c7.png)
+
