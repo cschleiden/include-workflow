@@ -18,3 +18,6 @@ runs:
       shell: bash
     - name: Run included workflow
       uses: ./included-workflow
+    - run: |
+        rm -fr "$GITHUB_WORKSPACE/included-workflow"
+      shell: bash
