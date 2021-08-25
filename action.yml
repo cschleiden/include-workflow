@@ -10,7 +10,7 @@ runs:
     - run: |
         mkdir "$GITHUB_WORKSPACE/included-workflow"
         echo "name: 'Included workflow'" > "$GITHUB_WORKSPACE/included-workflow/action.yml"
-        echo "runs:" >> "$GITHUB_WORKSPACE/inlcuded-workflow/action.yml"
+        echo "runs:" >> "$GITHUB_WORKSPACE/included-workflow/action.yml"
         echo "  using: \"composite\"" >> "$GITHUB_WORKSPACE/included-workflow/action.yml"
         echo "  steps:" >> "$GITHUB_WORKSPACE/included-workflow/action.yml"
       shell: bash    
